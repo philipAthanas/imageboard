@@ -3,9 +3,54 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="/styles/card.css">
+        
         <title>Image Board</title>
     </head>
-    <body>
+    <body id="main">
+        <h1>I LOVE PIXELS</h1>
+        <h1>Upload Your Files</h1>
+            <form
+                action="/image"
+                method="post"
+                enctype="multipart/form-data"
+                @submit.prevent="onFormSubmit"
+            >
+                <div class="form-row">
+                    <input type="text" v-model="title" placeholder="title"/> 
+                    <input type="text" v-model="description" placeholder="description"/>  
+                    <input type="text" v-model="username" placeholder="username"/>
+                    <label for="photo">Please select your file</label>
+                    <input type="file" name="photo" id="photo" />
+                </div>
+                <input type="submit" v-on:click="uploadImage" value="Upload!" class="btn-submit" />
+            </form>
+            <div class="status">{{ message }}</div>
+
+            <div class="images">
+                <img v-if="photo"
+                    
+                    :src="photo"
+                    alt="an image"
+                    class="image"
+                />
+            </div>
+
+        <div class="container_cards">
+                    <div class="data-card" :class="data-cardCSS" v-for="image of images">
+                        <div id="imgContainer" >
+                            <img  :src="image.url" />
+                        </div>
+                        <text>{{image.title}}</text>
+                    </div>
+                    
+                
+
+        </div>
+        
+    </div>
+       
+
         <script
             src="/js/app.js"
             type="module"
