@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="stylesheet" href="/styles/card.css">
+        <link rel="stylesheet" type="text/css" href="/styles/card.css">
         
         <title>Image Board</title>
     </head>
@@ -11,10 +11,9 @@
         <h1>I LOVE PIXELS</h1>
         <h1>Upload Your Files</h1>
             <form
-                action="/image"
-                method="post"
+              
                 enctype="multipart/form-data"
-                @submit.prevent="onFormSubmit"
+                @submit.prevent="uploadImage"
             >
                 <div class="form-row">
                     <input type="text" v-model="title" placeholder="title"/> 

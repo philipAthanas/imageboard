@@ -6,7 +6,7 @@ const { PORT = 8080 } = process.env;
 const { getImage } = require("./db");
 const { uploader } = require("./middleware");
 const fs = require("fs");
-// const { S3 } = require("./s3");
+const { S3 } = require("./s3");
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, "uploads")));
@@ -42,21 +42,19 @@ app.post("/image", uploader.single("photo"), (req, res) => {
             .then(() => {
                 console.log("success");
                 // it worked!!!
-                res.json({});
+                res.json({
+                    success: true,
+                    message: "File upload successful",
+                    url: `https://s3.amazonaws.com/${req.file.filename}`,
+                    description: req.body.description,
+                    title: req.body.titile,
+                    username: req.body.username,
+                });
             })
             .catch((err) => {
                 // uh oh
                 console.log(err);
             });
-
-        res.json({
-            success: true,
-            message: "File upload successful",
-            url: `https://s3.amazonaws.com/${req.file.filename}`,
-            description: req.body.description,
-            title: req.body.titile,
-            username: req.body.username,
-        });
     } else {
         res.json({
             success: false,

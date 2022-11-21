@@ -25,7 +25,7 @@ Vue.createApp({
             formData.append("image_title", this.title);
             formData.append("image_descp", this.description);
             formData.append("username", this.username);
-            fetch("/images", {
+            fetch("/image", {
                 method: "POST",
                 body: formData,
             })
@@ -37,8 +37,8 @@ Vue.createApp({
                     this.message = result.message;
                     console.log(result);
                     this.images.push(result);
-                })
-                .catch((err) => console.log(err));
+                });
+            // .catch((err) => console.log(err));
         },
     },
     mounted() {
