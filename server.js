@@ -68,3 +68,5 @@ app.get("*", (req, res) => {
 });
 
 app.listen(PORT, () => console.log(`I'm listening on port ${PORT}`));
+
+// uploading to https://s3.amazonaws.com/spicedling/nameOfPictureInUploads.jpg is working!

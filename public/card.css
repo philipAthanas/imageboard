@@ -1,71 +1,83 @@
-.data-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow: hidden;
-    border-radius: 0.5em;
-    text-decoration: none;
-    background: white;
-    margin: 1em;
-    padding: 20px;
-    box-shadow: 0 1.5em 2.5em -0.5em rgb(0 0 0 / 10%);
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    --myHeaderColor: #000000;
 }
-/* .page-contain {
-    display: flex;
-    min-height: 100vh;
-    align-items: center;
-    justify-content: center;
-    background: #e7f3f1;
-    border: 0.75em solid white;
-    padding: 2em;
-    font-family: "Open Sans", sans-serif;
-} */
 
 body {
-    /* background-color: #a2b8c5;
-    font-family: Arial, Helvetica, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    line-height: 1.4; */
-    background-color: #a2b8c5;
-    font-family: Arial, Helvetica, sans-serif;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    min-height: 100vh;
-    line-height: 1.4;
-    flex-wrap: wrap;
-    align-content: flex-start;
-    flex-direction: column;
-}
-
-.imgContainer {
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    width: 350px;
-    height: 500px;
-    position: relative;
-    box-shadow: 0 0 50px rgb(0 0 0 / 32%);
-}
-
-.container_cards {
+    height: 100vh;
+    width: 100%;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 80px 3fr 50px;
+}
 
+header {
+    text-align: center;
+    background-color: var(--myHeaderColor);
+}
+
+h1,
+h2 {
+    color: aliceblue;
+    margin-top: 20px;
+}
+
+main {
+    text-align: center;
+    background-color: #ecececd8;
+}
+
+/* ------------IMAGES CONTAINER ------------------ */
+#imageContainer {
+    display: grid;
     align-items: center;
-    justify-items: center;
-}
-img {
-    height: 200px;
-    width: 300px;
+    justify-content: center;
 }
 
-.form-row {
-    display: flex;
+#imagesContainer2 {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin: 1em 3em 0 3em;
 }
-/* #card {
-    display: flex;
+
+.imagetitle {
+    font-size: 20px;
+    font-weight: bold;
+    font-variant-caps: all-petite-caps;
+}
+
+.cardImage {
+    display: grid;
+    grid-template-rows: 1fr 2fr 1fr;
+    justify-content: center;
+    height: 280px;
+    margin: 10px;
+    padding: 10px;
+    border: 2px white solid;
+    box-shadow: 2px 2px 2px 1px #1b1b1b;
+}
+
+.someImage {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    background-color: rgb(0, 0, 0);
+}
+
+/* --------- DESCRIPTION ON IMAGE HOVER ------------- */
+/* .overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(29, 106, 154, 0.72);
+    color: #fff;
+    visibility: hidden;
+    opacity: 0;
+}
+.someImage:hover .overlay {
+    visibility: visible;
+    opacity: 1;
 } */
+
+footer {
+    background-color: black;
+}

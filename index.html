@@ -3,57 +3,68 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="stylesheet" type="text/css" href="/styles/card.css">
-        
+        <link rel="stylesheet" href="/card.css">
         <title>Image Board</title>
     </head>
-    <body id="main">
-        <h1>I LOVE PIXELS</h1>
-        <h1>Upload Your Files</h1>
-            <form
-              
-                enctype="multipart/form-data"
-                @submit.prevent="uploadImage"
-            >
-                <div class="form-row">
-                    <input type="text" v-model="title" placeholder="title"/> 
-                    <input type="text" v-model="description" placeholder="description"/>  
-                    <input type="text" v-model="username" placeholder="username"/>
-                    <label for="photo">Please select your file</label>
-                    <input type="file" name="photo" id="photo" accept="image/*">
-                </div>
-                <input type="submit" v-on:click="uploadImage" value="Upload!" class="btn-submit" />
-            </form>
-            <div class="status">{{ message }}</div>
-
-            <div class="images">
-                <img v-if="photo"
-                    
-                    :src="photo"
-                    alt="an image"
-                    class="image"
-                />
-            </div>
-
-        <div class="container_cards">
-                    <div class="data-card" :class="data-cardCSS" v-for="image of images">
-                        <div id="imgContainer" >
-                            <img  :src="image.url" />
-                        </div>
-                        <text>{{image.title}}</text>
-                    </div>
-                    
-                
-
-        </div>
-        
-    </div>
-       
-
+    <body>
         <script
             src="/js/app.js"
             type="module"
             crossorigin="use-credentials"
         ></script>
+        <header><h1>Imageboard</h1></header>
+
+        <!-- MAIN: PUT ALL MY STUFF HERE -->
+        <main id="main">
+            <!-- DISPLAY THE FORM FOR UPLOADING IMAGES HERE -->
+            <h2 class="uploadtitle">{{uploadheadline}}</h2><br>
+            <form class="uploadForm"
+                enctype="multipart/form-data"
+                @submit.prevent="uploadImage">
+                
+            <input
+                type="text"
+                name="title"
+                v-model="title"
+                id=""
+                placeholder="Title"
+            />
+            <input
+                type="text"
+                name="description"
+                v-model="description"
+                id=""
+                placeholder="Description"
+            />
+            <input
+                type="text"
+                v-model="username"
+                name="username"
+                id=""
+                placeholder="Username"
+            />
+                <div class="form-row">
+                    <label for="picture">Please select your file: </label>
+                    <input type="file" name="picture" id="picture" accept="image/*" />
+                </div><br>
+                <input type="submit" value="Upload!" class="btn-submit" />
+            </form>
+            <div class="status">{{ message }}</div>
+
+            <h2 class="someLine">-----------------------------------------------------------------------------------------------------------------------------------</h2>
+
+            <!-- DISPLAY MY IMAGE WITH INFO HERE -->
+            <h2 class="displaytitle">{{imagedisplayheadline}}</h2>
+            <div id="imagesContainer1">
+                <section id="imagesContainer2">
+                    <div class="cardImage" v-for="image of images">
+                        <p class="imagetitle">{{image.title}}</p>
+                        <img class="someImage" :src="image.url" alt="picture"/>
+                        <p class="imageDescription">{{image.description}}</p>
+                </div>
+                </section>  
+            </div>
+        </main>
+        <footer>Footer</footer>
     </body>
 </html>
