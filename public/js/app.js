@@ -25,7 +25,7 @@ Vue.createApp({
             formData.append("image_title", this.title);
             formData.append("image_descp", this.description);
             formData.append("username", this.username);
-            fetch("/image", {
+            fetch("/images", {
                 method: "POST",
                 body: formData,
             })

@@ -21,7 +21,7 @@
                     <input type="text" v-model="description" placeholder="description"/>  
                     <input type="text" v-model="username" placeholder="username"/>
                     <label for="photo">Please select your file</label>
-                    <input type="file" name="photo" id="photo" />
+                    <input type="file" name="photo" id="photo" accept="image/*">
                 </div>
                 <input type="submit" v-on:click="uploadImage" value="Upload!" class="btn-submit" />
             </form>

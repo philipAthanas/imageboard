@@ -52,7 +52,7 @@ app.post("/image", uploader.single("photo"), (req, res) => {
         res.json({
             success: true,
             message: "File upload successful",
-            url: `/${req.file.filename}`,
+            url: `https://s3.amazonaws.com/${req.file.filename}`,
             description: req.body.description,
             title: req.body.titile,
             username: req.body.username,
