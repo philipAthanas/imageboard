@@ -46,9 +46,10 @@ app.post("/image", uploader.single("photo"), (req, res) => {
                     url: `https://s3.amazonaws.com/spicedling/${req.file.filename}`,
                     username: req.body.username,
                     title: req.body.title,
-                    description: req.body.descpription,
+                    description: req.body.description,
                 })
-                    .then((res) => {
+                    .then((result) => {
+                        // wichtig!!! Parameter
                         //if successfully added to database, write json for img fetch in app.js
                         res.json({
                             success: true,
