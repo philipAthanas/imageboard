@@ -22,8 +22,8 @@ Vue.createApp({
             const photo = myFileInput.files[0];
             const formData = new FormData();
             formData.append("photo", photo);
-            formData.append("image_title", this.title);
-            formData.append("image_descp", this.description);
+            formData.append("title", this.title);
+            formData.append("description", this.description);
             formData.append("username", this.username);
             fetch("/image", {
                 method: "POST",

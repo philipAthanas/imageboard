@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 require("dotenv").config();
 const { PORT = 8080 } = process.env;
-const { getImage } = require("./db");
+const { getImage, addImage } = require("./db");
 const { uploader } = require("./middleware");
 const fs = require("fs");
 const { S3 } = require("./s3");
@@ -23,7 +23,8 @@ app.post("/image", uploader.single("photo"), (req, res) => {
     console.log("image in server");
     console.log(req.file);
 
-    console.log(req.body.image_title);
+    console.log(req.body);
+
     if (req.file) {
         console.log("file is", req.file);
 
@@ -40,19 +41,27 @@ app.post("/image", uploader.single("photo"), (req, res) => {
 
         promise
             .then(() => {
-                console.log("success");
-                // it worked!!!
-                res.json({
-                    success: true,
-                    message: "File upload successful",
-                    url: `https://s3.amazonaws.com/${req.file.filename}`,
-                    description: req.body.description,
-                    title: req.body.titile,
+                console.log("uploading image: ", req.body);
+                addImage({
+                    url: `https://s3.amazonaws.com/spicedling/${req.file.filename}`,
                     username: req.body.username,
-                });
+                    title: req.body.title,
+                    description: req.body.descpription,
+                })
+                    .then((res) => {
+                        //if successfully added to database, write json for img fetch in app.js
+                        res.json({
+                            success: true,
+                            message: "File upload successful",
+                            url: `https://s3.amazonaws.com/spicedling/${req.file.filename}`,
+                            description: req.body.description,
+                            title: req.body.title,
+                            username: req.body.username,
+                        });
+                    })
+                    .catch((err) => console.log(err));
             })
             .catch((err) => {
-                // uh oh
                 console.log(err);
             });
     } else {
@@ -69,4 +78,4 @@ app.get("*", (req, res) => {
 
 app.listen(PORT, () => console.log(`I'm listening on port ${PORT}`));
 
-// uploading to https://s3.amazonaws.com/spicedling/nameOfPictureInUploads.jpg is working!
+// uploading to https://s3.amazonaws.com/spicedling/gLAsKAd_hTzlSSm2sVEkZU41xOdcb3fY.JPG' is working!

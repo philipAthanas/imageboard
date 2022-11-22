@@ -28,7 +28,6 @@ main {
     background-color: #ecececd8;
 }
 
-/* ------------IMAGES CONTAINER ------------------ */
 #imageContainer {
     display: grid;
     align-items: center;
@@ -63,20 +62,6 @@ main {
     height: 200px;
     background-color: rgb(0, 0, 0);
 }
-
-/* --------- DESCRIPTION ON IMAGE HOVER ------------- */
-/* .overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(29, 106, 154, 0.72);
-    color: #fff;
-    visibility: hidden;
-    opacity: 0;
-}
-.someImage:hover .overlay {
-    visibility: visible;
-    opacity: 1;
-} */
 
 footer {
     background-color: black;

@@ -8,14 +8,15 @@ const db = spicedPg(
 module.exports.getImage = () => {
     return db.query("SELECT * FROM images").then((result) => result.rows);
 };
-//signup
-module.exports.addPetitioner = ({ firstName, lastName, email, password }) => {
+
+// saving images
+module.exports.addImage = ({ url, username, title, description }) => {
     return db
         .query(
-            `INSERT INTO users ("first_name", "last_name", "email", "password")
+            `INSERT INTO images ("url", "username", "title", "description")
     VALUES ($1, $2, $3, $4)
-    RETURNING id`,
-            [firstName, lastName, email, password]
+    RETURNING *`,
+            [url, username, title, description]
         )
         .then((result) => result.rows[0]);
 };
