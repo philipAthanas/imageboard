@@ -24,6 +24,7 @@ const comment = {
                     this.comments.push(result);
                     this.comment = "";
                     this.username = "";
+                    this.created_at = "";
                 })
                 .catch((err) => {
                     this.message = err;
@@ -36,10 +37,12 @@ const comment = {
             comments: [],
             username: "",
             comment: "",
+            created_at: "",
         };
     },
     template: `<div id="fieldForComments"  v-for="comment of comments">
                     <p> {{comment.comment}} by {{comment.username}}</p>
+                    <p>Comment posted: {{comment.created_at}} </p>
                </div>
                <form id="comment-form"  
                 method="post"
