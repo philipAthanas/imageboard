@@ -23,13 +23,15 @@ const Modal = {
         console.log("image in mounted", this.image);
     },
     template: `<div class="modal">
-                <button type="button" class="close" 
+                <button type="button" style="color:white" class="close" 
                 @click="close">X</button>
                 <div class="modalImgContainer">
-                    <h1> {{ image.title}} </h1>
-                    <img style="width:90%;" :src="image.url"  />
+                    <h1> {{ image.title}} </h1><br>
+                    <img style="width:60%; height:60%" :src="image.url"  /><br>
                     <p>{{ image.description }}</p> 
-                    <p>uploaded by {{ image.username }}</p>         
+                    <p>Uploaded by: {{ image.username }}</p>     
+                    <p>{{ image.timestamp }}</p>    
+                    <h3>Add a Comment!</h3>
                 </div>
             </div>`,
 };
