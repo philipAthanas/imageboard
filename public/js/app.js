@@ -16,7 +16,7 @@ Vue.createApp({
             description: "",
             username: "",
             isModal: false,
-            selectedImage: 0,
+            selectedImage: undefined,
         };
     },
     methods: {
@@ -46,11 +46,11 @@ Vue.createApp({
                 });
             // .catch((err) => console.log(err));
         },
-        openModal: function (result) {
-            console.log("image", result);
+        openModal: function (image) {
+            console.log("image", image);
             this.isModal = true;
 
-            this.selectedImage = result;
+            this.selectedImage = image;
         },
         closeModal: function () {
             this.isModal = false;
