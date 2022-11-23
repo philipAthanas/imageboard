@@ -3,7 +3,13 @@ const express = require("express");
 const app = express();
 require("dotenv").config();
 const { PORT = 8080 } = process.env;
-const { getImage, addImage, getSelectedImage } = require("./db");
+const {
+    getImage,
+    addImage,
+    getSelectedImage,
+    getImageComment,
+    addImageComment,
+} = require("./db");
 const { uploader } = require("./middleware");
 const fs = require("fs");
 const { S3 } = require("./s3");
@@ -79,6 +85,34 @@ app.get("/modal/:id", (req, res) => {
         getSelectedImage(req.params.id).then((result) => {
             console.log(result);
             return res.send(result);
+        });
+    }
+});
+
+// comment
+app.get("/comment/:id", (req, res) => {
+    if (req.params.id) {
+        getImageComment(req.params.id).then((result) => {
+            console.log("comments are ", result);
+            return res.send(result);
+        });
+    }
+});
+
+app.post("/comment/:id", (req, res) => {
+    console.log("comment: ", req.body);
+    if (req.body) {
+        addImageComment({
+            comment: req.body.comment,
+            username: req.body.username,
+            image_id: req.params.id,
+        }).then((result) => {
+            return res.json({
+                comment: result.comment,
+                username: result.username,
+                image_id: result.image_id,
+                id: result.id,
+            });
         });
     }
 });

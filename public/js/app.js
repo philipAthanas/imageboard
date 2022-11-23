@@ -1,5 +1,5 @@
 import * as Vue from "./vue.js";
-import modal from "../components/modal.js";
+import modal from "./components/modal.js";
 
 Vue.createApp({
     components: {
@@ -56,10 +56,11 @@ Vue.createApp({
             this.isModal = false;
         },
     },
-    components: {
-        //key is the name in the html and the value ist what i want to import
-        Modal: modal,
-    },
+    // components: {
+    //     //key is the name in the html and the value ist what i want to import
+    //     Modal: modal,
+    //     comment: comment,
+    // },
 
     mounted() {
         fetch("/images")

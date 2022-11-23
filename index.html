@@ -59,9 +59,6 @@
             <div id="imagesContainer1">
                 <section id="imagesContainer2">
                     <div class="cardImage" v-for="image of images"  @click="openModal(image)">
-                       <!-- <div>
-                            <img v-bind:src="image.url" />
-                        </div> -->
                        
                         <p class="imagetitle">{{image.title}}</p>
                         <img class="someImage" :src="image.url" alt="picture" />
