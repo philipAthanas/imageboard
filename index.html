@@ -4,6 +4,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="/card.css">
+         <link rel="stylesheet" href="/modal.css">
         <title>Image Board</title>
     </head>
     <body>
@@ -17,7 +18,7 @@
         <!-- MAIN: PUT ALL MY STUFF HERE -->
         <main id="main">
             <!-- DISPLAY THE FORM FOR UPLOADING IMAGES HERE -->
-            <h2 class="uploadtitle">{{uploadheadline}}</h2><br>
+            <!-- <h2 class="uploadtitle">{{uploadheadline}}</h2><br> -->
             <form class="uploadForm"
                 enctype="multipart/form-data"
                 @submit.prevent="uploadImage">
@@ -54,16 +55,17 @@
             <h2 class="someLine">-----------------------------------------------------------------------------------------------------------------------------------</h2>
 
             <!-- DISPLAY MY IMAGE WITH INFO HERE -->
-            <h2 class="displaytitle">{{imagedisplayheadline}}</h2>
+            <!-- <h2 class="displaytitle">{{imagedisplayheadline}}</h2> -->
             <div id="imagesContainer1">
                 <section id="imagesContainer2">
-                    <div class="cardImage" v-for="image of images">
+                    <div class="cardImage" v-for="image of images"  @click="openModal(image.id)">
                         <p class="imagetitle">{{image.title}}</p>
                         <img class="someImage" :src="image.url" alt="picture"/>
                         <p class="imageDescription">{{image.description}}</p>
                 </div>
                 </section>  
             </div>
+             <Modal :image="selectedImage" v-if="isModal" @close="closeModal"></Modal>
         </main>
         <footer>Footer</footer>
     </body>

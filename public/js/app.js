@@ -1,6 +1,10 @@
 import * as Vue from "./vue.js";
+import modal from "../components/modal.js";
 
 Vue.createApp({
+    components: {
+        modal: modal,
+    },
     data() {
         return {
             headline: "My Vue App",
@@ -11,6 +15,8 @@ Vue.createApp({
             title: "",
             description: "",
             username: "",
+            isModal: false,
+            selectedImage: 0,
         };
     },
     methods: {
@@ -25,7 +31,7 @@ Vue.createApp({
             formData.append("title", this.title);
             formData.append("description", this.description);
             formData.append("username", this.username);
-            fetch("/image", {
+            fetch("/images", {
                 method: "POST",
                 body: formData,
             })
@@ -40,7 +46,21 @@ Vue.createApp({
                 });
             // .catch((err) => console.log(err));
         },
+        openModal: function (result) {
+            console.log("image", result);
+            this.isModal = true;
+
+            this.selectedImage = result;
+        },
+        closeModal: function () {
+            this.isModal = false;
+        },
     },
+    components: {
+        //key is the name in the html and the value ist what i want to import
+        Modal: modal,
+    },
+
     mounted() {
         fetch("/images")
             .then((res) => {

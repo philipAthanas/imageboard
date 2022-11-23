@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 require("dotenv").config();
 const { PORT = 8080 } = process.env;
-const { getImage, addImage } = require("./db");
+const { getImage, addImage, getSelectedImage } = require("./db");
 const { uploader } = require("./middleware");
 const fs = require("fs");
 const { S3 } = require("./s3");
@@ -69,6 +69,16 @@ app.post("/image", uploader.single("photo"), (req, res) => {
         res.json({
             success: false,
             message: "File upload failed",
+        });
+    }
+});
+
+// modal
+app.get("/modal/:id", (req, res) => {
+    if (req.params.id) {
+        getSelectedImage(req.params.id).then((result) => {
+            console.log(result);
+            return res.send(result);
         });
     }
 });

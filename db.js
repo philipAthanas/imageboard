@@ -20,3 +20,10 @@ module.exports.addImage = ({ url, username, title, description }) => {
         )
         .then((result) => result.rows[0]);
 };
+
+// modal
+module.exports.getSelectedImage = (id) => {
+    return db
+        .query("SELECT * FROM images WHERE id=$1", [id])
+        .then((result) => result.rows[0]);
+};
