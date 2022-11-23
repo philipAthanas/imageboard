@@ -9,9 +9,8 @@
     background-color: rgba(2, 8, 20, 0.7);
 }
 .modalImgContainer {
-    display: flex;
-    flex-direction: column;
-    margin-top: 100px;
+    display: block;
+    margin-bottom: 150px;
     align-items: center;
     height: 600px;
     width: 800px;
