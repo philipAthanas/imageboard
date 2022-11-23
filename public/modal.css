@@ -11,7 +11,7 @@
 .modalImgContainer {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    margin-top: 100px;
     align-items: center;
     height: 600px;
     width: 800px;
@@ -37,4 +37,24 @@
 .modal h3 {
     margin-top: 10px;
     color: red;
+}
+#fieldForComments {
+    color: yellow;
+    margin-top: 5px;
+}
+
+.modal-info {
+    color: yellow;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#comment-form {
+    margin-top: 10px;
+}
+
+.btn-submit {
+    margin-top: 10px;
+    color: white;
+    background-color: black;
 }

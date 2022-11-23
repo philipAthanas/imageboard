@@ -38,7 +38,7 @@ const comment = {
             comment: "",
         };
     },
-    template: `<div v-for="comment of comments">
+    template: `<div id="fieldForComments"  v-for="comment of comments">
                     <p> {{comment.comment}} by {{comment.username}}</p>
                </div>
                <form id="comment-form"  
