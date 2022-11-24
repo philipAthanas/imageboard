@@ -4,7 +4,7 @@ const comment = {
         addComment: function (e) {
             e.preventDefault();
 
-            console.log("username", this.username);
+            console.log("username", this.username, this.id);
 
             fetch(`/comment/${this.id}`, {
                 method: "POST",
@@ -58,6 +58,7 @@ const comment = {
                `,
 
     mounted() {
+        console.log(this.id);
         fetch(`/comment/${this.id}`)
             .then((res) => {
                 return res.json();
