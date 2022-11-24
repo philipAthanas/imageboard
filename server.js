@@ -19,10 +19,13 @@ app.use(express.static(path.join(__dirname, "uploads")));
 
 app.use(express.json());
 
-app.get("/image", (req, res) => {
-    getImage().then((result) => {
-        return res.send(result);
-    });
+app.use((req, res, next) => {
+    console.log("---------------------");
+    console.log("req.url:", req.url);
+    console.log("req.method:", req.method);
+    console.log("req.session:", req.session);
+    console.log("---------------------");
+    next();
 });
 
 app.get("/images", (req, res) => {
@@ -30,6 +33,12 @@ app.get("/images", (req, res) => {
         return res.send(result);
     });
 });
+
+// app.get("/images", (req, res) => {
+//     getImage().then((result) => {
+//         return res.send(result);
+//     });
+// });
 
 app.post("/images", uploader.single("photo"), (req, res) => {
     console.log("image in server");
@@ -66,10 +75,7 @@ app.post("/images", uploader.single("photo"), (req, res) => {
                         res.json({
                             success: true,
                             message: "File upload successful",
-                            url: `https://s3.amazonaws.com/spicedling/${req.file.filename}`,
-                            description: req.body.description,
-                            title: req.body.title,
-                            username: req.body.username,
+                            data: result,
                         });
                     })
                     .catch((err) => console.log(err));
@@ -113,11 +119,14 @@ app.post("/comment/:id", (req, res) => {
             username: req.body.username,
             image_id: req.params.id,
         }).then((result) => {
+            console.log("Data addImageComment: ", result);
+            // CLEAN CODE
             return res.json({
                 comment: result.comment,
                 username: result.username,
                 image_id: result.image_id,
                 id: result.id,
+                data: result,
             });
         });
     }

@@ -4,7 +4,11 @@ const comment = {
         addComment: function (e) {
             e.preventDefault();
 
-            console.log("username", this.username, this.id);
+            console.log(
+                "username & id in comment addComment",
+                this.username,
+                this.id
+            );
 
             fetch(`/comment/${this.id}`, {
                 method: "POST",
@@ -21,7 +25,7 @@ const comment = {
                 })
                 .then((result) => {
                     console.log("uploaded :", result);
-                    this.comments.push(result);
+                    this.comments.push(result.data);
                     this.comment = "";
                     this.username = "";
                     this.created_at = "";
@@ -58,7 +62,7 @@ const comment = {
                `,
 
     mounted() {
-        console.log(this.id);
+        console.log("this.id in comments in mounted", this.id);
         fetch(`/comment/${this.id}`)
             .then((res) => {
                 return res.json();

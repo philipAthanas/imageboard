@@ -39,12 +39,17 @@ Vue.createApp({
                     return response.json();
                 })
                 .then((result) => {
-                    this.photo = result.file;
-                    this.message = result.message;
-                    console.log(result);
-                    this.images.push(result);
+                    console.log("Result in post upload", result);
+                    this.images.push(result.data);
+                    this.clearInput();
                 });
             // .catch((err) => console.log(err));
+        },
+        clearInput: function () {
+            this.photo = ""; //may not work
+            this.message = "";
+            this.username = "";
+            this.description = "";
         },
         openModal: function (image) {
             console.log("image", image);

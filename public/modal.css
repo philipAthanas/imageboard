@@ -17,10 +17,15 @@
 }
 
 .close {
-    align-self: flex-end;
-    padding: 1rem;
+    /* align-self: flex-end; */
+    /* padding: 10rem; */
     background: transparent;
     border: unset;
+    /* margin-right: 150px;
+    margin-top: 15px; */
+    color: red;
+    position: relative;
+    margin-left: 500px;
 }
 
 #modal-img {
