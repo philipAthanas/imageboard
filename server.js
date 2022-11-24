@@ -19,13 +19,19 @@ app.use(express.static(path.join(__dirname, "uploads")));
 
 app.use(express.json());
 
+app.get("/image", (req, res) => {
+    getImage().then((result) => {
+        return res.send(result);
+    });
+});
+
 app.get("/images", (req, res) => {
     getImage().then((result) => {
         return res.send(result);
     });
 });
 
-app.post("/image", uploader.single("photo"), (req, res) => {
+app.post("/images", uploader.single("photo"), (req, res) => {
     console.log("image in server");
     console.log(req.file);
 
